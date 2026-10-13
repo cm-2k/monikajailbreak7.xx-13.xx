@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Monika PS4 Auto Host 🐤</title>
+    <style>
+        /* ثيم مونيكا - Doki Doki */
+        body {
+            background-color: #ffffff;
+            background-image: url('monika.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ff66a3;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            color: #ff3385;
+            text-shadow: 2px 2px 5px rgba(255, 102, 163, 0.4);
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 30px;
+            border-radius: 40px;
+            border: 2px dashed #ff99c2;
+        }
+
+        #msgs {
+            background: rgba(255, 240, 245, 0.95);
+            border: 3px solid #ff66a3;
+            padding: 20px 45px;
+            border-radius: 50px; 
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #d6336c;
+            box-shadow: 0 8px 25px rgba(255, 102, 163, 0.5);
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            min-width: 50%;
+        }
+        
+        /* قسم تصميم الأزرار الوردية */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 750px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pink-pill-btn {
+            background: linear-gradient(135deg, #ff66a3, #ff3385);
+            color: white;
+            border: 2px solid #ff99c2;
+            padding: 14px 30px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 50px; 
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 5px 15px rgba(255, 102, 163, 0.4);
+            min-width: 200px;
+        }
+
+        .pink-pill-btn:hover {
+            background: linear-gradient(135deg, #ff99c2, #ff66a3);
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 25px rgba(255, 102, 163, 0.85);
+        }
+
+        .pink-pill-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* صندوق الحقوق */
+        .credits {
+            margin-top: auto;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #cc0052;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: 1px solid #ffb3d1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .credits a {
+            color: #ff0066;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 8px;
+            transition: color 0.2s;
+        }
+
+        .credits a:hover {
+            color: #b30047;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- أكواد الجافاسكربت الأصلية للتشغيل التلقائي -->
+    <script>
+    var uaFull = navigator.userAgent;
+    var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+    var isPS4 = match !== null;
+    var fwVersion = isPS4 ? match[1] : "Unknown";
+    var fwNum = parseFloat(fwVersion);
+
+    function onScriptError() {
+        msgs.innerHTML = "Content not Found! - Clear Browser Data and Re-Install Cache ...";
+    }
+
+    if (!isPS4) {
+        document.addEventListener("DOMContentLoaded", () => {
+            msgs.innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 13.52";
+        });
+    } else {
+        if (window.applicationCache.status == '0') {
+            if (fwNum == 5.05 || fwNum == 5.07) {
+                window.location.replace("cache505.html");
+            } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                window.location.replace("cache700.html");
+            } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                window.location.replace("cache900.html");
+            } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                window.location.replace("cachecss.html");
+            } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+                window.location.replace("cacheslopkit.html");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
+                });
+            }
+        } else {
+            if (fwNum == 5.05 || fwNum == 5.07) {
+                var script = document.createElement('script');
+                script.src = "505/exploit.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "700/alert.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "900/alert.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                var script = document.createElement('script');
+                script.src = "css/main.js";
+                script.onerror = onScriptError;
+                script.onload = function () {
+                    setTimeout(function () {
+                        doJb();
+                    }, 500);
+                };
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 11.50 && fwNum <= 12.02) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/chain_lapse.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 12.50 && fwNum <= 13.00) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/chain_poops.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 13.02 && fwNum <= 13.52) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/jb.js?v=19";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+        }
+    }
+    </script>
+
+    <!-- العنوان -->
+    <div class="main-title">Just Monika - PS4 jailbreak 7.xx-13.xx host</div>
+
+    <!-- صندوق رسائل النظام -->
+    <div id="msgs"> Wait until Monica jailbreaks your Ps4 and injects GoldHen 🌸</div>
+
+    <!-- صندوق الأزرار الحقيقية (يظهر بعد التفعيل) -->
+    <div class="button-container" id="tools-box" style="display: none; opacity: 0; transition: opacity 1s ease;">
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/disableupdates.bin')">Disable Updates</button>
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/enableupdates.bin')">Enable Updates</button>
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/ftp.bin')">FTP Server</button>
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/app2usb.bin')">App2USB</button>
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/enablebrowser.bin')">Enable Browser</button>
+        <button class="pink-pill-btn" onclick="loadPayload('payloads/Orbis-Toolbox-900.bin')">Orbis Toolbox</button>
+    </div>
+
+    <!-- قسم الحقوق -->
+    <div class="credits">
+        Special Thanks to: 
+        <a href="#">@lilmonix3</a> | 
+        ChendoChap | 
+        <a href="#">Cm2k</a> | 
+        SiSTR0 | Abc
+    </div>
+
+    <!-- السكربتات المضافة للأزرار والمراقبة -->
+    <script>
+        // دالة تشغيل البايلودز
+        function loadPayload(payloadPath) {
+            const msgsBox = document.getElementById('msgs');
+            // يستخرج اسم الملف من المسار لعرضه في الرسالة
+            const fileName = payloadPath.split('/').pop();
+            msgsBox.innerText = "جاري تحميل أداة " + fileName + " ...";
+            msgsBox.style.borderColor = "#ff99c2";
+            
+            // محاولة جلب الملف (تتطلب دالة حقن خاصة بحسب الـ Exploit لاحقاً)
+            fetch(payloadPath)
+                .then(response => response.arrayBuffer())
+                .then(data => {
+                    msgsBox.innerText = "تم تحميل " + fileName + " بنجاح!";
+                    msgsBox.style.borderColor = "#00ff88";
+                })
+                .catch(error => {
+                    msgsBox.innerText = "فشل في تحميل " + fileName;
+                    msgsBox.style.borderColor = "red";
+                });
+        }
+
+        // مراقبة نجاح الجولد هين لإظهار الأزرار
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const msgsBox = document.getElementById('msgs');
+            const toolsBox = document.getElementById('tools-box');
+
+            if(msgsBox && toolsBox) {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        const currentText = msgsBox.innerText.toLowerCase();
+                        if (currentText.includes("loaded") || currentText.includes("done") || currentText.includes("success")) {
+                            toolsBox.style.display = "flex";
+                            setTimeout(() => { toolsBox.style.opacity = "1"; }, 100);
+                            observer.disconnect();
+                        }
+                    });
+                });
+                observer.observe(msgsBox, { childList: true, characterData: true, subtree: true });
+            }
+        });
+    </script>
+</body>
+</html>
