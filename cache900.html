@@ -1,23 +1,88 @@
 <!DOCTYPE html>
 <html manifest="900.manifest">
 <head>
-<title>PS4 [5.05] 7.00 - 13.52 FW GoldHEN Host by GamerHack</title>
-<link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <title>Monika PS4 Auto Host 🐤 - Caching</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            background-image: url('monika.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ff66a3;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .main-title {
+            font-size: 2.8rem;
+            color: #ff3385;
+            text-shadow: 2px 2px 5px rgba(255, 102, 163, 0.4);
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 30px;
+            border-radius: 40px;
+            border: 2px dashed #ff99c2;
+        }
+        #msgs {
+            background: rgba(255, 240, 245, 0.95);
+            border: 3px solid #ff66a3;
+            padding: 20px 45px;
+            border-radius: 50px; 
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #d6336c;
+            box-shadow: 0 8px 25px rgba(255, 102, 163, 0.5);
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            min-width: 50%;
+        }
+        .credits {
+            margin-top: auto;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #cc0052;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 30px;
+            border-radius: 30px;
+            border: 1px solid #ffb3d1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
 <body>
-<script>
-history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
-function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%";}
-function DisplayCacheProgress(){window.msgs.innerHTML="Cache Installed Successfully ✔";setTimeout(function(){window.msgs.innerHTML="Now Close And Re-Open Your Browser ...";},1500);}
-window.applicationCache.addEventListener("progress",DLProgress,false);
-window.applicationCache.oncached=function(e){DisplayCacheProgress();};
-window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
-window.applicationCache.onerror=function(e){window.msgs.innerHTML="Error Installing Cache! - Clear and Re-Open Your Browser ...";};
-</script>
-<h1>PS4 [5.05] 7.00 - 13.52 FW GoldHEN Host by GamerHack</h1>
-<hr>
-<br>
-<h1 id=msgs style="font-size: 30px;margin-top: 77px;margin-bottom: 455px;">Starting Cache Installation...</h1>
-<h1 style="margin-top: 43px;">Special Thanks to:<a href="https://twitter.com/_AlAzif" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@_AlAzif</a>ChendoChap<a href="https://x.com/Kameleonre_" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@Kameleonre_</a>SiSTR0 Abc</h1>
+    <script>
+        history.replaceState(null,null,'index.html');
+        var histlength = history.length;
+        history.go(-histlength);
+
+        function DLProgress(e){
+            Percent = (Math.round(e.loaded / e.total * 100));
+            window.msgs.innerHTML = "Installing Offline Cache: " + Percent + "% 🌸";
+        }
+        function DisplayCacheProgress(){
+            window.msgs.innerHTML = "Cache Installed Successfully ✔";
+            setTimeout(function(){
+                window.msgs.innerHTML = "Now Close And Re-Open Your Browser ... 🐤";
+            }, 1500);
+        }
+        window.applicationCache.addEventListener("progress", DLProgress, false);
+        window.applicationCache.oncached = function(e){ DisplayCacheProgress(); };
+        window.applicationCache.onupdateready = function(e){ DisplayCacheProgress(); };
+        window.applicationCache.onerror = function(e){
+            window.msgs.innerHTML = "Error Installing Cache! - Clear and Re-Open Your Browser ...";
+        };
+    </script>
+
+    <div class="main-title">Just Monika - Caching</div>
+    <div id="msgs">Starting Cache Installation... 🌸</div>
+    <div class="credits">Special Thanks to: @lilmonix3 (Monika) | Miftah | @Cm2k | SiSTR0</div>
 </body>
 </html>

@@ -223,42 +223,51 @@
         Special Thanks to: @lilmonix3 (Monika) | Miftah | @Cm2k | SiSTR0
     </div>
 
-    <!-- السكربتات المضافة للأزرار والمراقبة -->
+   <!-- السكربتات المضافة للأزرار والمراقبة -->
     <script>
-        // دالة تشغيل البايلودز الحقيقية للبلايستيشن
         function loadPayload(payloadPath, toolName) {
             const msgsBox = document.getElementById('msgs');
             
-            // رسالة جاري التحميل
             msgsBox.innerText = toolName + " is loading by monika";
             msgsBox.style.borderColor = "#ff99c2";
             
             fetch(payloadPath)
                 .then(response => response.arrayBuffer())
                 .then(data => {
-                    // أمر إرسال الملف إلى البلايستيشن الفعلي (BinLoader)
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', 'http://127.0.0.1:9090/', true);
+                    
+                    // مراقبة نجاح الإرسال الفعلي للبلايستيشن
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            if (toolName === "Disable Updates") {
+                                msgsBox.innerText = toolName + " is loaded by monika, enjoy using internet safely !";
+                            } else if (toolName === "Enable Updates") {
+                                msgsBox.innerText = toolName + " is loaded by monika";
+                            } else {
+                                msgsBox.innerText = toolName + " is loaded by monika, enjoy !";
+                            }
+                            msgsBox.style.borderColor = "#00ff88";
+                        } else {
+                            msgsBox.innerText = toolName + " failed";
+                            msgsBox.style.borderColor = "red";
+                        }
+                    };
+                    
+                    xhr.onerror = function() {
+                        msgsBox.innerText = toolName + " failed";
+                        msgsBox.style.borderColor = "red";
+                    };
+                    
                     xhr.send(data);
-
-                    // رسائل النجاح المخصصة حسب الأداة
-                    if (toolName === "Disable Updates") {
-                        msgsBox.innerText = toolName + " is loaded by monika, enjoy using internet safely !";
-                    } else if (toolName === "Enable Updates") {
-                        msgsBox.innerText = toolName + " is loaded by monika";
-                    } else {
-                        msgsBox.innerText = toolName + " is loaded by monika, enjoy !";
-                    }
-                    msgsBox.style.borderColor = "#00ff88";
                 })
                 .catch(error => {
-                    // رسالة الفشل
                     msgsBox.innerText = toolName + " failed";
                     msgsBox.style.borderColor = "red";
                 });
         }
 
-        // مراقبة نجاح الجولد هين لإظهار الأزرار
+        // المراقبة الدقيقة لنجاح الجولد هين فقط
         window.addEventListener('DOMContentLoaded', (event) => {
             const msgsBox = document.getElementById('msgs');
             const toolsBox = document.getElementById('tools-box');
@@ -267,9 +276,9 @@
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
                         const currentText = msgsBox.innerText.toLowerCase();
-                        if (currentText.includes("loaded") || currentText.includes("done") || currentText.includes("success")) {
+                        // لن تفتح الأزرار إلا إذاا قرأ السكربت كلمة goldhen بالتحديد
+                        if (currentText.includes("goldhen loaded")) {
                             
-                            // الرسالة الجديدة بعد تفعيل الجولد هين
                             msgsBox.innerText = 'GoldHen is loaded by monika, enjoy!';
                             msgsBox.style.borderColor = "#00ff88";
                             
